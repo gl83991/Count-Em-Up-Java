@@ -4,16 +4,45 @@
 package org.example;
 
 public class App {
-  // This is a sample function just to show you how everything works
-  // You should create your own classes with business logic
-  // You can delete the getGreeting() function when you submit your lab
-  public String getGreeting() {
-      return "Hello World!";
+    private int value;
+  private int overflows;
+  public App() {
+      this.value = 0;
+      this.overflows = 0;
   }
 
-  // This is a sample main function just to show you how everything works
-  // You can update it with a driver program for your solution
-  public static void main(String[] args) {
-      System.out.println(new App().getGreeting());
+  public int getOverflows() {
+    return overflows;
+  }
+
+  public void ten(){
+    add(1000);
+  }
+  public void one(){
+    add(100);
+  }
+  public void tenth(){
+    add(10);
+  }
+  public void hundreth(){
+    add(1);
+  }
+  public void clear(){
+    this.value = 0;
+    this.overflows = 0;
+  }
+  
+  public String total (){
+    int dollars = value / 100;
+    int cents = value % 100;
+    return String.format("%d.%02d", dollars, cents);
+  }
+
+  private void add(int inc) {
+    value += inc;
+    if (value > 999999) {
+      value -= 1000000;
+      overflows++;
+    }
   }
 }
